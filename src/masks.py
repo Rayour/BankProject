@@ -1,6 +1,3 @@
-from typing import Union
-
-
 def get_mask_card_number(card_number: int | str) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску"""
 
