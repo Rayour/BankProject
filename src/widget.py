@@ -16,3 +16,9 @@ def mask_account_card(card_account_number: str) -> str:
         masked_number = f"{card_account_number[0:-16]}{masks.get_mask_card_number(card_number)}"
 
     return masked_number
+
+
+def get_date(date_string: str) -> str:
+    """Принимает на вход дату в формате ISO строки, отдает дату в формате ДД.ММ.ГГГГ"""
+
+    return f"{date_string[8:10]}.{date_string[5:7]}.{date_string[:4]}"
