@@ -13,3 +13,10 @@ def filter_by_state(operations_list: List[dict], state: str = "EXECUTED") -> Lis
             filtered_list.append(operation)
 
     return filtered_list
+
+
+def sort_by_date(operations_list: List[dict], sort_reverse: bool = True) -> List[dict]:
+    """Функция получает на вход список операций и сортирует их по дате в указанном направлении.
+    По умолчанию сортировка происходит по убыванию"""
+
+    return sorted(operations_list, key=lambda x: x['date'], reverse=sort_reverse)
