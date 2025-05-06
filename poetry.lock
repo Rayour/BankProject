@@ -237,6 +237,18 @@ files = [
 ]
 
 [[package]]
+name = "pydocmd"
+version = "1.0"
+description = "Generate python module / script documentation in Markdown format"
+optional = false
+python-versions = "*"
+groups = ["utils"]
+files = [
+    {file = "pydocmd-1.0-py3-none-any.whl", hash = "sha256:2fdcdcd5ec17303f6c6f94daca87172526f83820086405b6faf63cf272fb310c"},
+    {file = "pydocmd-1.0.tar.gz", hash = "sha256:72d215bb16dd9d0491d521d3f8cd78f9acaeb0d5df685acc914639da7413a2b5"},
+]
+
+[[package]]
 name = "pyflakes"
 version = "3.3.2"
 description = "passive checker of Python programs"
@@ -263,4 +275,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "24c2f1bca1ef76da51ed8f4ef48749c87ea97b1b0e43ea34303bc804469ae1f0"
+content-hash = "7fdc4709a73c343570a0def73bf1490cbd7204fc609b886d96f707a465bbdc3b"
