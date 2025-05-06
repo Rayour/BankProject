@@ -12,7 +12,7 @@ git clone https://github.com/Rayour/BankProject.git
 ```
 2. Установите зависимости:
 ```
-pip install -r requirements.txt
+poetry instal 
 ```
 ## Использование:
 
