@@ -1,4 +1,6 @@
-import masks
+"""Модуль содержит функции, позволяющие обрабатывать данные пользователя"""
+
+import src.masks
 
 
 def mask_account_card(card_account_number: str) -> str:
@@ -10,10 +12,10 @@ def mask_account_card(card_account_number: str) -> str:
 
     if "Счет" in card_account_number:
         account_number = card_account_number[5:]
-        masked_number = f"Счет {masks.get_mask_account(account_number)}"
+        masked_number = f"Счет {src.masks.get_mask_account(account_number)}"
     else:
         card_number = card_account_number[-16:]
-        masked_number = f"{card_account_number[0:-16]}{masks.get_mask_card_number(card_number)}"
+        masked_number = f"{card_account_number[0:-16]}{src.masks.get_mask_card_number(card_number)}"
 
     return masked_number
 
