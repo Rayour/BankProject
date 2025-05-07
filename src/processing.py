@@ -1,5 +1,5 @@
 """Модуль содержит функции, позволяющие работать со списком операций пользователя"""
-
+from datetime import date
 from typing import List
 
 
@@ -11,7 +11,8 @@ def filter_by_state(operations_list: List[dict], state: str = "EXECUTED") -> Lis
     filtered_list = []
 
     for operation in operations_list:
-        if operation["state"] == state:
+        print(operation)
+        if "state" in operation.keys() and operation["state"] == state:
             filtered_list.append(operation)
 
     return filtered_list
@@ -21,4 +22,10 @@ def sort_by_date(operations_list: List[dict], sort_reverse: bool = True) -> List
     """Функция получает на вход список операций и сортирует их по дате в указанном направлении.
     По умолчанию сортировка происходит по убыванию"""
 
-    return sorted(operations_list, key=lambda x: x['date'], reverse=sort_reverse)
+    for operation in operations_list:
+        try:
+            date.fromisoformat(operation["date"][:10])
+        except Exception:
+            raise ValueError("Incorrect operation date")
+
+    return sorted(operations_list, key=lambda x: x["date"], reverse=sort_reverse)
