@@ -23,6 +23,7 @@ def incorrect_card_numbers(request):
         {"input": "", "output": "Incorrect card number"},
         {"input": "123458909", "output": "Incorrect card number"},
         {"input": "djth48islg9038gj", "output": "Incorrect card number"},
+        {"input": [1234567890123456], "output": "Incorrect card number"},
     ]
     return tests[request.param]
 
@@ -44,7 +45,8 @@ def incorrect_account_numbers(request):
     tests = [
         {"input": "", "output": "Incorrect account number"},
         {"input": "123458909", "output": "Incorrect account number"},
-        {"input": "sjtu483hltis8912345", "output": "Incorrect account number"},
+        {"input": "sjtu483hltis89123456", "output": "Incorrect account number"},
+        {"input": [12345678901234567890], "output": "Incorrect account number"},
     ]
     return tests[request.param]
 
