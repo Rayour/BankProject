@@ -1,8 +1,10 @@
+from typing import Any
+
 import pytest
 
 
 @pytest.fixture
-def correct_card_numbers(request):
+def correct_card_numbers(request: Any) -> Any:
     """Содержит набор тестовых данных с корректными номерами банковских карт"""
 
     tests = [
@@ -16,7 +18,7 @@ def correct_card_numbers(request):
 
 
 @pytest.fixture
-def incorrect_card_numbers(request):
+def incorrect_card_numbers(request: Any) -> Any:
     """Содержит набор тестовых данных с некорректными номерами банковских карт"""
 
     tests = [
@@ -29,7 +31,7 @@ def incorrect_card_numbers(request):
 
 
 @pytest.fixture
-def correct_account_numbers(request):
+def correct_account_numbers(request: Any) -> Any:
     """Содержит набор тестовых данных с корректными номерами банковских счетов"""
 
     tests = [
@@ -39,7 +41,7 @@ def correct_account_numbers(request):
 
 
 @pytest.fixture
-def incorrect_account_numbers(request):
+def incorrect_account_numbers(request: Any) -> Any:
     """Содержит набор тестовых данных с некорректными номерами банковских счетов"""
 
     tests = [
@@ -52,7 +54,7 @@ def incorrect_account_numbers(request):
 
 
 @pytest.fixture
-def correct_account_card_data(request):
+def correct_account_card_data(request: Any) -> Any:
     """Содержит набор тестовых данных с корректными данными по банковским счетам и картам"""
 
     tests = [
@@ -69,7 +71,7 @@ def correct_account_card_data(request):
 
 
 @pytest.fixture
-def incorrect_account_card_data(request):
+def incorrect_account_card_data(request: Any) -> Any:
     """Содержит набор тестовых данных с некорректными данными по банковским счетам и картам"""
 
     tests = [
@@ -80,7 +82,7 @@ def incorrect_account_card_data(request):
 
 
 @pytest.fixture
-def correct_date_data(request):
+def correct_date_data(request: Any) -> Any:
     """Содержит набор тестовых данных с корректными датами"""
 
     tests = [
@@ -90,7 +92,7 @@ def correct_date_data(request):
 
 
 @pytest.fixture
-def incorrect_date_data(request):
+def incorrect_date_data(request: Any) -> Any:
     """Содержит набор тестовых данных с некорректными датами"""
 
     tests = [
@@ -102,7 +104,7 @@ def incorrect_date_data(request):
 
 
 @pytest.fixture
-def correct_operations_list_states(request):
+def correct_operations_list_states(request: Any) -> Any:
     """Содержит набор тестовых данных с корректными списками операций"""
 
     tests = [
@@ -128,7 +130,7 @@ def correct_operations_list_states(request):
 
 
 @pytest.fixture
-def correct_operations_list_dates(request):
+def correct_operations_list_dates(request: Any) -> Any:
     """Содержит набор тестовых данных с корректными списками операций"""
 
     tests = [
@@ -162,7 +164,7 @@ def correct_operations_list_dates(request):
 
 
 @pytest.fixture
-def incorrect_operations_list_dates(request):
+def incorrect_operations_list_dates(request: Any) -> Any:
     """Содержит набор тестовых данных с некорректными списками операций"""
 
     tests = [
