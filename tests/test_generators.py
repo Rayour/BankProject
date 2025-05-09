@@ -37,3 +37,20 @@ def test_transaction_descriptions_empty(empty_descriptions_transactions_list: An
         next(gen)
 
     assert str(exc_info.typename) == empty_descriptions_transactions_list["output"]
+
+
+@pytest.mark.parametrize("correct_input_data_card_number_generator", [i for i in range(2)], indirect=True)
+def test_card_number_generator(correct_input_data_card_number_generator: Any) -> None:
+    gen = src.generators.card_number_generator(*correct_input_data_card_number_generator["input"])
+    for j in range(len(correct_input_data_card_number_generator["output"])):
+        assert next(gen) == correct_input_data_card_number_generator["output"][j]
+
+
+@pytest.mark.parametrize("incorrect_input_data_card_number_generator", [i for i in range(4)], indirect=True)
+def test_card_number_generator_incorrect(incorrect_input_data_card_number_generator: Any) -> None:
+
+    gen = src.generators.card_number_generator(*incorrect_input_data_card_number_generator["input"])
+    with pytest.raises(ValueError) as exc_info:
+        next(gen)
+
+    assert str(exc_info.value) == incorrect_input_data_card_number_generator["output"]

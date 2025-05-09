@@ -413,8 +413,37 @@ def correct_descriptions_transactions_list(request: Any) -> Any:
 
 @pytest.fixture
 def empty_descriptions_transactions_list(request: Any) -> Any:
-    """Содержит набор тестовых данных с транзакциями, дающими пустую выдачу"""
+    """Содержит пустой список транзакций"""
 
     tests = [{"input": [], "output": "StopIteration"}]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def correct_input_data_card_number_generator(request: Any) -> Any:
+    """Содержит корректный набор данных для генерации номеров банковских карт"""
+
+    tests = [
+        {"input": [1, 3], "output": ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]},
+        {
+            "input": [9876543298765432, 9876543298765430],
+            "output": ["9876 5432 9876 5430", "9876 5432 9876 5431", "9876 5432 9876 5432"],
+        },
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def incorrect_input_data_card_number_generator(request: Any) -> Any:
+    """Содержит некорректный набор данных для генерации номеров банковских карт"""
+
+    tests = [
+        {"input": ["as", 6], "output": "Incorrect input data"},
+        {"input": [5, "as"], "output": "Incorrect input data"},
+        {"input": [-2, 123], "output": "Incorrect input data"},
+        {"input": [123, -2], "output": "Incorrect input data"},
+    ]
 
     return tests[request.param]
