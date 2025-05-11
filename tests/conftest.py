@@ -447,3 +447,14 @@ def incorrect_input_data_card_number_generator(request: Any) -> Any:
     ]
 
     return tests[request.param]
+
+  
+@pytest.fixture  
+def log_decoration(request: Any) -> Any:
+    """Содержит набор данных для тестирвоания декоратора логирования"""
+    tests = [
+        {"input": (3, 5), "output": "[INFO] Function sum_a_b([(3, 5), {}]) successfully finished at with result 8\n"},
+        {
+            "input": ("a", 5),
+            "output": """[ERROR] Function sum_a_b([('a', 5), {}]) failed at with error "unsupported operand type(s) \
+for +: 'int' and 'str'"\n""",
