@@ -16,7 +16,7 @@ def test_mask_incorrect_account_card(incorrect_account_card_data: dict) -> None:
     assert str(exc_info.value) == incorrect_account_card_data["output"]
 
 
-@pytest.mark.parametrize("correct_date_data", [(0)], indirect=True)
+@pytest.mark.parametrize("correct_date_data", [0], indirect=True)
 def test_get_date(correct_date_data: dict) -> None:
     assert src.widget.get_date(correct_date_data["input"]) == correct_date_data["output"]
 

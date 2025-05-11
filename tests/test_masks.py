@@ -16,7 +16,7 @@ def test_get_mask_card_incorrect_number(incorrect_card_numbers: dict) -> None:
     assert str(exc_info.value) == incorrect_card_numbers["output"]
 
 
-@pytest.mark.parametrize("correct_account_numbers", [(0)], indirect=True)
+@pytest.mark.parametrize("correct_account_numbers", [0], indirect=True)
 def test_get_mask_account(correct_account_numbers: dict) -> None:
     assert src.masks.get_mask_account(correct_account_numbers["input"]) == correct_account_numbers["output"]
 

@@ -1,4 +1,5 @@
 """Модуль содержит функции, позволяющие работать со списком операций пользователя"""
+
 from datetime import date
 from typing import List
 
