@@ -4,10 +4,10 @@
 
 from datetime import datetime
 from functools import wraps
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 
-def log(*, filename: str = "") -> Any:
+def log(*, filename: Optional[str] = None) -> Any:
     """
     Декоратор. Логирует информацию о работе функции в файл, переданный в именованном аргументе 'filename'
     или в консоль, если имя файла не указано.
