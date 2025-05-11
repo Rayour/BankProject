@@ -241,13 +241,220 @@ def incorrect_operations_list_dates(request: Any) -> Any:
 
 
 @pytest.fixture
+def correct_transactions_list(request: Any) -> Any:
+    """Содержит набор тестовых данных с корректными транзакциями"""
+
+    input_data = [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+        {
+            "id": 939719571,
+            "state": "EXECUTED",
+            "date": "2018-07-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264269,
+            "state": "EXECUTED",
+            "date": "2019-03-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+    ]
+
+    tests = [
+        {
+            "input": [input_data, "RUR"],
+            "output": [
+                {
+                    "id": 939719570,
+                    "state": "EXECUTED",
+                    "date": "2018-06-30T02:08:58.425572",
+                    "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+                    "description": "Перевод организации",
+                    "from": "Счет 75106830613657916952",
+                    "to": "Счет 11776614605963066702",
+                },
+                {
+                    "id": 939719571,
+                    "state": "EXECUTED",
+                    "date": "2018-07-30T02:08:58.425572",
+                    "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+                    "description": "Перевод со счета на счет",
+                    "from": "Счет 75106830613657916952",
+                    "to": "Счет 11776614605963066702",
+                },
+            ],
+        },
+        {
+            "input": [input_data, "USD"],
+            "output": [
+                {
+                    "id": 142264268,
+                    "state": "EXECUTED",
+                    "date": "2019-04-04T23:20:05.206878",
+                    "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+                    "description": "Перевод со счета на счет",
+                    "from": "Счет 19708645243227258542",
+                    "to": "Счет 75651667383060284188",
+                }
+            ],
+        },
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def empty_transactions_list(request: Any) -> Any:
+    """Содержит набор тестовых данных с транзакциями, дающими пустую выдачу"""
+
+    tests = [
+        {"input": [[], "RUR"], "output": "StopIteration"},
+        {
+            "input": [
+                [
+                    {
+                        "id": 142264269,
+                        "state": "EXECUTED",
+                        "date": "2019-03-04T23:20:05.206878",
+                        "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод со счета на счет",
+                        "from": "Счет 19708645243227258542",
+                        "to": "Счет 75651667383060284188",
+                    }
+                ],
+                "EUR",
+            ],
+            "output": "StopIteration",
+        },
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def correct_descriptions_transactions_list(request: Any) -> Any:
+    """Содержит набор тестовых данных с корректными транзакциями и описаниями"""
+
+    input_data = [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+        {
+            "id": 939719571,
+            "state": "EXECUTED",
+            "date": "2018-07-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264269,
+            "state": "EXECUTED",
+            "date": "2019-03-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+    ]
+
+    tests = [
+        {
+            "input": input_data,
+            "output": [
+                "Перевод организации",
+                "Перевод со счета на счет",
+                "",
+                "",
+            ],
+        }
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def empty_descriptions_transactions_list(request: Any) -> Any:
+    """Содержит пустой список транзакций"""
+
+    tests = [{"input": [], "output": "StopIteration"}]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def correct_input_data_card_number_generator(request: Any) -> Any:
+    """Содержит корректный набор данных для генерации номеров банковских карт"""
+
+    tests = [
+        {"input": [1, 3], "output": ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]},
+        {
+            "input": [9876543298765432, 9876543298765430],
+            "output": ["9876 5432 9876 5430", "9876 5432 9876 5431", "9876 5432 9876 5432"],
+        },
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def incorrect_input_data_card_number_generator(request: Any) -> Any:
+    """Содержит некорректный набор данных для генерации номеров банковских карт"""
+
+    tests = [
+        {"input": ["as", 6], "output": "Incorrect input data"},
+        {"input": [5, "as"], "output": "Incorrect input data"},
+        {"input": [-2, 123], "output": "Incorrect input data"},
+        {"input": [123, -2], "output": "Incorrect input data"},
+    ]
+
+    return tests[request.param]
+
+  
+@pytest.fixture  
 def log_decoration(request: Any) -> Any:
+    """Содержит набор данных для тестирвоания декоратора логирования"""
     tests = [
         {"input": (3, 5), "output": "[INFO] Function sum_a_b([(3, 5), {}]) successfully finished at with result 8\n"},
         {
             "input": ("a", 5),
             "output": """[ERROR] Function sum_a_b([('a', 5), {}]) failed at with error "unsupported operand type(s) \
 for +: 'int' and 'str'"\n""",
-        },
-    ]
-    return tests[request.param]
