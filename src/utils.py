@@ -1,11 +1,12 @@
 import json
 import os
+from pathlib import Path
 
 
 def get_operations_list(path_to_json: str) -> list[dict]:
     """Получает на вход путь до json файла, возвращает список словарей с информацией об операциях"""
 
-    PATH_TO_JSON = os.path.join('..', path_to_json)
+    PATH_TO_JSON = os.path.join(Path(__file__).resolve().parents[1], path_to_json)
 
     try:
         with open(PATH_TO_JSON, 'r', encoding='utf-8') as json_file:
