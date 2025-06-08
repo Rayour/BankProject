@@ -462,3 +462,45 @@ for +: 'int' and 'str'"\n""",
     ]
 
     return tests[request.param]
+
+
+@pytest.fixture
+def correct_data_for_mock_operation_file(request: Any) -> Any:
+    """Содержит данные для тестирования функции utils.get_operations_list"""
+
+    tests = [
+        {"input": [{
+            "id": 667307132,
+            "state": "EXECUTED",
+            "date": "2019-07-13T18:51:29.313309",
+            "operationAmount": {
+                "amount": "97853.86",
+                "currency": {
+                    "name": "руб.",
+                    "code": "RUB"
+                }
+            },
+            "description": "Перевод с карты на счет",
+            "from": "Maestro 1308795367077170",
+            "to": "Счет 96527012349577388612"
+        }], "output": [{
+            "id": 667307132,
+            "state": "EXECUTED",
+            "date": "2019-07-13T18:51:29.313309",
+            "operationAmount": {
+                "amount": "97853.86",
+                "currency": {
+                    "name": "руб.",
+                    "code": "RUB"
+                }
+            },
+            "description": "Перевод с карты на счет",
+            "from": "Maestro 1308795367077170",
+            "to": "Счет 96527012349577388612"
+        }], "path": ("data", "operations.json")},
+        {"input": [], "output": [], "path": ("data", "operations.json")},
+        {"input": 'some string', "output": [], "path": ("data", "operations.json")},
+        {"input": 'some string', "output": [], "path": ("fake_file.json",)}
+    ]
+
+    return tests[request.param]
