@@ -504,3 +504,49 @@ def correct_data_for_mock_operation_file(request: Any) -> Any:
     ]
 
     return tests[request.param]
+
+
+@pytest.fixture
+def correct_exchange_money_data_for_mock(request: Any) -> Any:
+    """Содержит данные для позитивного тестирования функции external_api.exchange_money"""
+
+    tests = [
+        {"input": {"status": 200,
+                   "json":
+                       {
+                           "result": 3724.305775,
+                           "success": True
+                       }
+                   }, "output": 3724.305775}
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def incorrect_exchange_money_data_for_mock(request: Any) -> Any:
+    """Содержит данные для тестирования исключений функции external_api.exchange_money"""
+
+    tests = [
+        {"input": {"status": 200,
+                   "json":
+                       {
+                           "result": 3724.305775,
+                           "success": False
+                       }
+                   }, "output": "Something went wrong, try later"},
+        {"input": {"status": 200,
+                   "json":
+                       {
+                           "result": 3724.305775,
+                       }
+                   }, "output": "Something went wrong, try later"},
+        {"input": {"status": 200,
+                   "json": None
+                   }, "output": "Something went wrong, try later"},
+        {"input": {"status": 500,
+                   "json": {}
+                   }, "output": "Something went wrong, try later"},
+    ]
+
+    return tests[request.param]
