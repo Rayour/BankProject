@@ -62,5 +62,3 @@ def get_transactions_sum(transactions: list[dict]) -> float:
             transactions_sum += amount_rub
     logger.info(f"Сумма транзакций в рублях: {transactions_sum}")
     return transactions_sum
-
-print(get_operations_list(os.path.join(ROOT_PATH, 'data', 'operations.json')))
