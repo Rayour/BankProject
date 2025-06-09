@@ -8,8 +8,7 @@ load_dotenv()
 
 
 def exchange_money(amount_currency: str, currency_from_convert: str) -> float | Any:
-    """Получает на вход сумму в рублях и валюту для конвертации,
-    возвращает сумму в указанной валюте"""
+    """Получает на вход сумму в валюте и валюту для конвертации, возвращает сумму в рублях"""
 
     exchange_service_api_key = os.getenv("EXCHANGE_SERVICE_API_KEY")
     headers = {"apikey": exchange_service_api_key}
