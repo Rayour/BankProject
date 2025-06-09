@@ -21,7 +21,7 @@ def test_log_to_file(log_decoration: dict) -> None:
     with open(os.path.join(Path(__file__).resolve().parents[1], "tests", "test_logs", "logs.txt"), "r") as file:
         logstring = file.read()
 
-    log_string_to_check_1 = logstring[28:logstring.index("at") + 3]
+    log_string_to_check_1 = logstring[28: logstring.index("at") + 3]
     log_string_to_check_2 = logstring[logstring.index("at") + 32:]
 
     assert log_string_to_check_1 + log_string_to_check_2 == log_decoration["output"]
@@ -37,7 +37,7 @@ def test_log_to_console(log_decoration: dict, capsys: Any) -> None:
 
     logstring = capsys.readouterr().out
 
-    log_string_to_check_1 = logstring[28:logstring.index("at") + 3]
+    log_string_to_check_1 = logstring[28: logstring.index("at") + 3]
     log_string_to_check_2 = logstring[logstring.index("at") + 32:]
 
     assert log_string_to_check_1 + log_string_to_check_2 == log_decoration["output"]

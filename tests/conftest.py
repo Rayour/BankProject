@@ -5,7 +5,8 @@ import pytest
 
 @pytest.fixture
 def correct_card_numbers(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными номерами банковских карт"""
+    """Содержит набор тестовых данных с корректными номерами банковских карт
+    для тестирования функции src.masks.get_mask_card_number"""
 
     tests = [
         {"input": "1234560123456", "output": "1234 56** **** 3456"},
@@ -19,7 +20,8 @@ def correct_card_numbers(request: Any) -> Any:
 
 @pytest.fixture
 def incorrect_card_numbers(request: Any) -> Any:
-    """Содержит набор тестовых данных с некорректными номерами банковских карт"""
+    """Содержит набор тестовых данных с некорректными номерами банковских карт
+    для тестирования функции src.masks.get_mask_card_number"""
 
     tests = [
         {"input": "", "output": "Incorrect card number"},
@@ -32,7 +34,8 @@ def incorrect_card_numbers(request: Any) -> Any:
 
 @pytest.fixture
 def correct_account_numbers(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными номерами банковских счетов"""
+    """Содержит набор тестовых данных с корректными номерами банковских счетов
+    для тестирования функции src.masks.get_mask_account"""
 
     tests = [{"input": "12345678901234567890", "output": "**7890"}]
     return tests[request.param]
@@ -40,7 +43,8 @@ def correct_account_numbers(request: Any) -> Any:
 
 @pytest.fixture
 def incorrect_account_numbers(request: Any) -> Any:
-    """Содержит набор тестовых данных с некорректными номерами банковских счетов"""
+    """Содержит набор тестовых данных с некорректными номерами банковских счетов
+    для тестирования функции src.masks.get_mask_account"""
 
     tests = [
         {"input": "", "output": "Incorrect account number"},
@@ -53,7 +57,8 @@ def incorrect_account_numbers(request: Any) -> Any:
 
 @pytest.fixture
 def correct_account_card_data(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными данными по банковским счетам и картам"""
+    """Содержит набор тестовых данных с корректными данными по банковским счетам и картам
+    для тестирования функции src.widgets.mask_account_card"""
 
     tests = [
         {"input": "Maestro 1596837868705199", "output": "Maestro 1596 83** **** 5199"},
@@ -70,7 +75,8 @@ def correct_account_card_data(request: Any) -> Any:
 
 @pytest.fixture
 def incorrect_account_card_data(request: Any) -> Any:
-    """Содержит набор тестовых данных с некорректными данными по банковским счетам и картам"""
+    """Содержит набор тестовых данных с некорректными данными по банковским счетам и картам
+    для тестирования функции src.widgets.mask_account_card"""
 
     tests = [
         {"input": "", "output": "Incorrect input data"},
@@ -81,7 +87,8 @@ def incorrect_account_card_data(request: Any) -> Any:
 
 @pytest.fixture
 def correct_date_data(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными датами"""
+    """Содержит набор тестовых данных с корректными датами
+    для тестирования функции src.widgets.get_date"""
 
     tests = [{"input": "2024-03-11T02:26:18.671407", "output": "11.03.2024"}]
     return tests[request.param]
@@ -89,7 +96,8 @@ def correct_date_data(request: Any) -> Any:
 
 @pytest.fixture
 def incorrect_date_data(request: Any) -> Any:
-    """Содержит набор тестовых данных с некорректными датами"""
+    """Содержит набор тестовых данных с некорректными датами
+    для тестирования функции src.widgets.get_date"""
 
     tests = [
         {"input": "2024-13-11T02:26:18.671407", "output": "Incorrect input data"},
@@ -101,7 +109,8 @@ def incorrect_date_data(request: Any) -> Any:
 
 @pytest.fixture
 def correct_operations_list_states(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными списками операций"""
+    """Содержит набор тестовых данных с корректными списками операций
+    для тестирования функции src.processing.filter_by_state"""
 
     tests = [
         {
@@ -151,7 +160,8 @@ def correct_operations_list_states(request: Any) -> Any:
 
 @pytest.fixture
 def correct_operations_list_dates(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными списками операций"""
+    """Содержит набор тестовых данных с корректными списками операций
+    для тестирования функции src.processing.sort_by_date"""
 
     tests = [
         {
@@ -210,7 +220,8 @@ def correct_operations_list_dates(request: Any) -> Any:
 
 @pytest.fixture
 def incorrect_operations_list_dates(request: Any) -> Any:
-    """Содержит набор тестовых данных с некорректными списками операций"""
+    """Содержит набор тестовых данных с некорректными списками операций
+    для тестирования функции src.processing.sort_by_date"""
 
     tests = [
         {
@@ -242,7 +253,8 @@ def incorrect_operations_list_dates(request: Any) -> Any:
 
 @pytest.fixture
 def correct_transactions_list(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными транзакциями"""
+    """Содержит набор тестовых данных с корректными транзакциями
+    для тестирования функции src.generators.filter_by_currency"""
 
     input_data = [
         {
@@ -328,7 +340,8 @@ def correct_transactions_list(request: Any) -> Any:
 
 @pytest.fixture
 def empty_transactions_list(request: Any) -> Any:
-    """Содержит набор тестовых данных с транзакциями, дающими пустую выдачу"""
+    """Содержит набор тестовых данных с транзакциями, дающими пустую выдачу
+    для тестирования функции src.generators.filter_by_currency"""
 
     tests = [
         {"input": [[], "RUR"], "output": "StopIteration"},
@@ -356,7 +369,8 @@ def empty_transactions_list(request: Any) -> Any:
 
 @pytest.fixture
 def correct_descriptions_transactions_list(request: Any) -> Any:
-    """Содержит набор тестовых данных с корректными транзакциями и описаниями"""
+    """Содержит набор тестовых данных с корректными транзакциями и описаниями
+    для тестирования функции src.generators.transaction_descriptions"""
 
     input_data = [
         {
@@ -413,7 +427,8 @@ def correct_descriptions_transactions_list(request: Any) -> Any:
 
 @pytest.fixture
 def empty_descriptions_transactions_list(request: Any) -> Any:
-    """Содержит пустой список транзакций"""
+    """Содержит пустой список транзакций
+    для тестирования функции src.generators.transaction_descriptions"""
 
     tests = [{"input": [], "output": "StopIteration"}]
 
@@ -422,7 +437,8 @@ def empty_descriptions_transactions_list(request: Any) -> Any:
 
 @pytest.fixture
 def correct_input_data_card_number_generator(request: Any) -> Any:
-    """Содержит корректный набор данных для генерации номеров банковских карт"""
+    """Содержит корректный набор данных для генерации номеров банковских карт
+    для тестирования функции src.generators.card_number_generator"""
 
     tests = [
         {"input": [1, 3], "output": ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]},
@@ -437,7 +453,8 @@ def correct_input_data_card_number_generator(request: Any) -> Any:
 
 @pytest.fixture
 def incorrect_input_data_card_number_generator(request: Any) -> Any:
-    """Содержит некорректный набор данных для генерации номеров банковских карт"""
+    """Содержит некорректный набор данных для генерации номеров банковских карт
+    для тестирования функции src.generators.card_number_generator"""
 
     tests = [
         {"input": ["as", 6], "output": "Incorrect input data"},
@@ -451,7 +468,8 @@ def incorrect_input_data_card_number_generator(request: Any) -> Any:
 
 @pytest.fixture
 def log_decoration(request: Any) -> Any:
-    """Содержит набор данных для тестирвоания декоратора логирования"""
+    """Содержит набор данных для тестирования декоратора логирования
+    src.decorators.log"""
     tests = [
         {"input": (3, 5), "output": "[INFO] Function sum_a_b([(3, 5), {}]) successfully finished at with result 8\n"},
         {
@@ -459,6 +477,114 @@ def log_decoration(request: Any) -> Any:
             "output": """[ERROR] Function sum_a_b([('a', 5), {}]) failed at with error "unsupported operand type(s) \
 for +: 'int' and 'str'"\n""",
         },
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def correct_data_for_mock_operation_file(request: Any) -> Any:
+    """Содержит данные для тестирования функции src.utils.get_operations_list"""
+
+    tests = [
+        {
+            "input": [
+                {
+                    "id": 667307132,
+                    "state": "EXECUTED",
+                    "date": "2019-07-13T18:51:29.313309",
+                    "operationAmount": {"amount": "97853.86", "currency": {"name": "руб.", "code": "RUB"}},
+                    "description": "Перевод с карты на счет",
+                    "from": "Maestro 1308795367077170",
+                    "to": "Счет 96527012349577388612",
+                }
+            ],
+            "output": [
+                {
+                    "id": 667307132,
+                    "state": "EXECUTED",
+                    "date": "2019-07-13T18:51:29.313309",
+                    "operationAmount": {"amount": "97853.86", "currency": {"name": "руб.", "code": "RUB"}},
+                    "description": "Перевод с карты на счет",
+                    "from": "Maestro 1308795367077170",
+                    "to": "Счет 96527012349577388612",
+                }
+            ],
+            "path": ("data", "operations.json"),
+        },
+        {"input": [], "output": [], "path": ("data", "operations.json")},
+        {"input": "some string", "output": [], "path": ("data", "operations.json")},
+        {"input": "some string", "output": [], "path": ("fake_file.json",)},
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def correct_exchange_money_data_for_mock(request: Any) -> Any:
+    """Содержит данные для позитивного тестирования функции src.external_api.exchange_money"""
+
+    tests = [{"input": {"status": 200, "json": {"result": 3724.305775, "success": True}}, "output": 3724.305775}]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def incorrect_exchange_money_data_for_mock(request: Any) -> Any:
+    """Содержит данные для тестирования исключений функции src.external_api.exchange_money"""
+
+    tests = [
+        {
+            "input": {"status": 200, "json": {"result": 3724.305775, "success": False}},
+            "output": "Something went wrong, try later",
+        },
+        {
+            "input": {
+                "status": 200,
+                "json": {
+                    "result": 3724.305775,
+                },
+            },
+            "output": "Something went wrong, try later",
+        },
+        {"input": {"status": 200, "json": None}, "output": "Something went wrong, try later"},
+        {"input": {"status": 500, "json": {}}, "output": "Something went wrong, try later"},
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def transactions_list_for_sum_calculate(request: Any) -> Any:
+    """Содержит данные для тестирования функции src.utils.get_transactions_sum"""
+
+    tests = [
+        {
+            "input": {
+                "transactions": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод организации",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ],
+                "mocked_amount": 20000.51,
+            },
+            "output": 50001.03,
+        }
     ]
 
     return tests[request.param]

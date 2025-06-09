@@ -292,3 +292,85 @@ for card_number in card_number_generator(5, 3):
 [2025-05-11 18:41:46.862144][ERROR] Function sum_a_b([('a', 5), {}]) failed at [2025-05-11 18:41:46.862154] with error "unsupported operand type(s) for +: 'int' and 'str'"
 [2025-05-11 18:42:46.862144][INFO] Function sum_a_b([(3, 5), {}]) successfully finished at [2025-05-11 18:42:46.862154] with result 8
 ```
+
+### Модуль external_api
+
+Содержит функции для взаимодействия со сторонними сервисами по API
+
+#### Функция exchange_money(amount_currency: str, currency_from_convert: str) -> float | Any
+
+Получает на вход сумму в валюте и валюту для конвертации, возвращает сумму в рублях
+
+**Пример**:
+
+```
+print(exchange_money("5", "EUR"))
+
+>>> 497.54
+```
+
+### Модуль utils
+
+Содержит вспомогательные функции для работы с транзакциями
+
+#### Функция get_operations_list(path_to_json: str) -> list[dict]:
+
+Получает на вход путь до json файла, возвращает список словарей с информацией об операциях
+
+**Пример**:
+
+```
+print(get_operations_list("file.json"))
+
+>>> [
+		{
+			"id":441945886,
+			"state":"EXECUTED",
+			"date":"2019-08-26T10:50:58.294041",
+			"operationAmount":{
+			"amount":"31957.58",
+			"currency":{
+				"name":"руб.",
+					"code":"RUB"
+			}
+		},
+		"description":"Перевод организации",
+		"from":"Maestro 1596837868705199",
+		"to":"Счет 64686473678894779589"
+		}
+	]
+```
+
+#### Функция get_transactions_sum(transactions: list[dict]) -> float
+
+Получает на вход список словарей с транзакциями, возвращает сумму всех транзакций в рублях.
+Конвертация из других валют происходит по текущему курсу на момент расчетов.
+
+**Пример**:
+
+```
+transactions = [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "82.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод организации",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ]
+				
+print(get_transactions_sum(transactions))
+
+>>> 37112.82
+```
