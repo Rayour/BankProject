@@ -17,7 +17,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
     filename=log_path,
     filemode="w",
-    encoding='utf-8'
+    encoding="utf-8",
 )
 logger = logging.getLogger("utils")
 
