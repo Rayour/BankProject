@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 
-from src.external_api import exchange_money
+import src.external_api
 
 
 def get_operations_list(path_to_json: str) -> list[dict]:
@@ -33,9 +33,9 @@ def get_transactions_sum(transactions: list[dict]) -> float:
         if transaction["operationAmount"]["currency"]["code"] == "RUB":
             transactions_sum += float(transaction["operationAmount"]["amount"])
         else:
-            amount_rub = exchange_money(
+            amount_rub = src.external_api.exchange_money(
                 transaction["operationAmount"]["amount"], transaction["operationAmount"]["currency"]["code"]
             )
-            transactions_sum += float(amount_rub)
+            transactions_sum += amount_rub
 
     return transactions_sum

@@ -484,41 +484,37 @@ for +: 'int' and 'str'"\n""",
 
 @pytest.fixture
 def correct_data_for_mock_operation_file(request: Any) -> Any:
-    """Содержит данные для тестирования функции utils.get_operations_list"""
+    """Содержит данные для тестирования функции src.utils.get_operations_list"""
 
     tests = [
-        {"input": [{
-            "id": 667307132,
-            "state": "EXECUTED",
-            "date": "2019-07-13T18:51:29.313309",
-            "operationAmount": {
-                "amount": "97853.86",
-                "currency": {
-                    "name": "руб.",
-                    "code": "RUB"
+        {
+            "input": [
+                {
+                    "id": 667307132,
+                    "state": "EXECUTED",
+                    "date": "2019-07-13T18:51:29.313309",
+                    "operationAmount": {"amount": "97853.86", "currency": {"name": "руб.", "code": "RUB"}},
+                    "description": "Перевод с карты на счет",
+                    "from": "Maestro 1308795367077170",
+                    "to": "Счет 96527012349577388612",
                 }
-            },
-            "description": "Перевод с карты на счет",
-            "from": "Maestro 1308795367077170",
-            "to": "Счет 96527012349577388612"
-        }], "output": [{
-            "id": 667307132,
-            "state": "EXECUTED",
-            "date": "2019-07-13T18:51:29.313309",
-            "operationAmount": {
-                "amount": "97853.86",
-                "currency": {
-                    "name": "руб.",
-                    "code": "RUB"
+            ],
+            "output": [
+                {
+                    "id": 667307132,
+                    "state": "EXECUTED",
+                    "date": "2019-07-13T18:51:29.313309",
+                    "operationAmount": {"amount": "97853.86", "currency": {"name": "руб.", "code": "RUB"}},
+                    "description": "Перевод с карты на счет",
+                    "from": "Maestro 1308795367077170",
+                    "to": "Счет 96527012349577388612",
                 }
-            },
-            "description": "Перевод с карты на счет",
-            "from": "Maestro 1308795367077170",
-            "to": "Счет 96527012349577388612"
-        }], "path": ("data", "operations.json")},
+            ],
+            "path": ("data", "operations.json"),
+        },
         {"input": [], "output": [], "path": ("data", "operations.json")},
-        {"input": 'some string', "output": [], "path": ("data", "operations.json")},
-        {"input": 'some string', "output": [], "path": ("fake_file.json",)}
+        {"input": "some string", "output": [], "path": ("data", "operations.json")},
+        {"input": "some string", "output": [], "path": ("fake_file.json",)},
     ]
 
     return tests[request.param]
@@ -526,45 +522,69 @@ def correct_data_for_mock_operation_file(request: Any) -> Any:
 
 @pytest.fixture
 def correct_exchange_money_data_for_mock(request: Any) -> Any:
-    """Содержит данные для позитивного тестирования функции external_api.exchange_money"""
+    """Содержит данные для позитивного тестирования функции src.external_api.exchange_money"""
 
-    tests = [
-        {"input": {"status": 200,
-                   "json":
-                       {
-                           "result": 3724.305775,
-                           "success": True
-                       }
-                   }, "output": 3724.305775}
-    ]
+    tests = [{"input": {"status": 200, "json": {"result": 3724.305775, "success": True}}, "output": 3724.305775}]
 
     return tests[request.param]
 
 
 @pytest.fixture
 def incorrect_exchange_money_data_for_mock(request: Any) -> Any:
-    """Содержит данные для тестирования исключений функции external_api.exchange_money"""
+    """Содержит данные для тестирования исключений функции src.external_api.exchange_money"""
 
     tests = [
-        {"input": {"status": 200,
-                   "json":
-                       {
-                           "result": 3724.305775,
-                           "success": False
-                       }
-                   }, "output": "Something went wrong, try later"},
-        {"input": {"status": 200,
-                   "json":
-                       {
-                           "result": 3724.305775,
-                       }
-                   }, "output": "Something went wrong, try later"},
-        {"input": {"status": 200,
-                   "json": None
-                   }, "output": "Something went wrong, try later"},
-        {"input": {"status": 500,
-                   "json": {}
-                   }, "output": "Something went wrong, try later"},
+        {
+            "input": {"status": 200, "json": {"result": 3724.305775, "success": False}},
+            "output": "Something went wrong, try later",
+        },
+        {
+            "input": {
+                "status": 200,
+                "json": {
+                    "result": 3724.305775,
+                },
+            },
+            "output": "Something went wrong, try later",
+        },
+        {"input": {"status": 200, "json": None}, "output": "Something went wrong, try later"},
+        {"input": {"status": 500, "json": {}}, "output": "Something went wrong, try later"},
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def transactions_list_for_sum_calculate(request: Any) -> Any:
+    """Содержит данные для тестирования функции src.utils.get_transactions_sum"""
+
+    tests = [
+        {
+            "input": {
+                "transactions": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод организации",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ],
+                "mocked_amount": 20000.51,
+            },
+            "output": 50001.03,
+        }
     ]
 
     return tests[request.param]
