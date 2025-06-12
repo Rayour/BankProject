@@ -44,7 +44,7 @@ def read_transactions_from_csv(csv_path: str) -> list[dict]:
         return transactions_list
 
 
-def read_transactions_from_xlsx(xlsx_path: str) -> list[dict] | Any:
+def read_transactions_from_xlsx(xlsx_path: str) -> list[dict]:
     """Функция получает на вход путь до xlsx файла с транзакциями,
     возвращает список транзакций"""
 
