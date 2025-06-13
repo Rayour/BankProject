@@ -11,7 +11,8 @@ def mask_account_card(card_account_number: str) -> str:
     Возвращает строку с замаскированным номером.
     Для маскировки номера карты и номера счета используются разные маски.
     """
-
+    if not card_account_number:
+        return ''
     if "Счет" in card_account_number:
         account_number = card_account_number[5:]
         masked_number = f"Счет {src.masks.get_mask_account(account_number)}"

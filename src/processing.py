@@ -14,7 +14,6 @@ def filter_by_state(operations_list: List[dict], state: str = "EXECUTED") -> Lis
     filtered_list = []
 
     for operation in operations_list:
-        print(operation)
         if "state" in operation.keys() and operation["state"] == state:
             filtered_list.append(operation)
 

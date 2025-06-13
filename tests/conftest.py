@@ -69,6 +69,7 @@ def correct_account_card_data(request: Any) -> Any:
         {"input": "Visa Platinum 8990922113665229", "output": "Visa Platinum 8990 92** **** 5229"},
         {"input": "Visa Gold 5999414228426353", "output": "Visa Gold 5999 41** **** 6353"},
         {"input": "Счет 73654108430135874305", "output": "Счет **4305"},
+        {"input": "", "output": ""},
     ]
     return tests[request.param]
 
@@ -79,7 +80,6 @@ def incorrect_account_card_data(request: Any) -> Any:
     для тестирования функции src.widgets.mask_account_card"""
 
     tests = [
-        {"input": "", "output": "Incorrect input data"},
         {"input": "95043734", "output": "Incorrect input data"},
     ]
     return tests[request.param]
