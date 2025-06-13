@@ -134,6 +134,80 @@
 
 `ValueError("Incorrect operation date")`
 
+#### Функция process_bank_search(transactions: list[dict], search_str: str) -> list[dict]
+
+Функция принимает список транзакций и строку для поиска, возвращает список транзакций, 
+в описании которых встречается указанная строка
+
+**Пример**:
+```
+transactions = [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        }
+    ]
+print(process_bank_search(transactions, "ОРГ"))
+
+>>> [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        }
+    ]
+```
+
+#### Функция get_count_process_bank_operations_categories(transactions: list[dict], categories: list) -> dict
+
+Функция принимает список транзакций и список категорий, возвращает
+словарь с количеством транзакций каждой запрашиваемой категории
+
+**Пример**:
+```
+transactions = [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "RUR", "code": "RUR"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        }
+    ]
+print(process_bank_search(transactions, ["Перевод со счета на счет", "Перевод организации", "Открытие счета"]))
+
+>>> {"Перевод со счета": 1, "Перевод организации": 1, "Открытие счета": 0}
+```
+
 ### Модуль generators
 
 Модуль содержит функции, реализующие генераторы для обработки данных

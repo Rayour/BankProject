@@ -36,7 +36,7 @@ def sort_by_date(operations_list: List[dict], sort_reverse: bool = True) -> List
 
 def process_bank_search(transactions: list[dict], search_str: str) -> list[dict]:
     """Функция принимает список транзакций и строку для поиска,
-    возвращает список транзакций, в которых встречается указанная строка"""
+    возвращает список транзакций, в описании которых встречается указанная строка"""
 
     search_result = [item for item in transactions if re.search(search_str, item['description'], flags=re.IGNORECASE)]
     return search_result
@@ -44,7 +44,7 @@ def process_bank_search(transactions: list[dict], search_str: str) -> list[dict]
 
 def get_count_process_bank_operations_categories(transactions: list[dict], categories: list) -> dict:
     """Функция принимает список транзакций и список категорий,
-    словарь с количеством транзакций каждой запрашиваемой категории"""
+    возвращает словарь с количеством транзакций каждой запрашиваемой категории"""
 
     transactions_categories = [item["description"] for item in transactions]
     counted_categories = Counter(transactions_categories)
