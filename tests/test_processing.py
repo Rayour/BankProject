@@ -15,10 +15,8 @@ def test_filter_by_state(correct_operations_list_states: Any) -> None:
 
 @pytest.mark.parametrize("correct_operations_list_dates", [i for i in range(4)], indirect=True)
 def test_sort_by_date(correct_operations_list_dates: Any) -> None:
-    assert (
-            src.processing.sort_by_date(*correct_operations_list_dates["input"]) == correct_operations_list_dates[
-        "output"]
-    )
+    assert src.processing.sort_by_date(*correct_operations_list_dates["input"]) == \
+           correct_operations_list_dates["output"]
 
 
 @pytest.mark.parametrize("incorrect_operations_list_dates", [i for i in range(2)], indirect=True)
@@ -34,3 +32,11 @@ def test_process_bank_search(transactions_list_for_search_by_str: Any) -> None:
     assert src.processing.process_bank_search(transactions_list_for_search_by_str["input"]["transactions"],
                                               transactions_list_for_search_by_str["input"]["search_str"]) == \
            transactions_list_for_search_by_str["output"]
+
+
+@pytest.mark.parametrize("transactions_list_for_count_categories", [i for i in range(1)], indirect=True)
+def test_get_count_process_bank_operations_categories(transactions_list_for_count_categories: Any) -> None:
+    assert src.processing.get_count_process_bank_operations_categories(
+        transactions_list_for_count_categories["input"]["transactions"],
+        transactions_list_for_count_categories["input"]["categories"]) == \
+           transactions_list_for_count_categories["output"]
