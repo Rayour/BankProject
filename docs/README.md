@@ -374,3 +374,69 @@ print(get_transactions_sum(transactions))
 
 >>> 37112.82
 ```
+
+### Модуль read_data
+
+Содержит функции, позволяющие получать данные о транзакциях из .csv и .xlsx файлов
+
+#### Функция read_transactions_from_csv(csv_path: str) -> list[dict]
+
+Функция получает на вход путь до csv файла с транзакциями, возвращает список транзакций.
+
+**Пример**:
+
+```
+print(read_transactions_from_csv('transactions.csv'))
+
+>>> [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        },
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "82.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    ]
+```
+
+#### Функция read_transactions_from_xlsx(xlsx_path: str) -> list[dict]
+
+Функция получает на вход путь до xlsx файла с транзакциями, возвращает список транзакций.
+
+**Пример**:
+
+```
+print(read_transactions_from_xlsx('transactions.xlsx'))
+
+>>> [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        },
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "82.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    ]
+```

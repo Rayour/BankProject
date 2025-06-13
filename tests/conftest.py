@@ -588,3 +588,70 @@ def transactions_list_for_sum_calculate(request: Any) -> Any:
     ]
 
     return tests[request.param]
+
+
+@pytest.fixture
+def transactions_list_for_read_from_csv(request: Any) -> Any:
+    """Содержит данные для мока csv файла для теста функции src.read_data.read_transactions_from_csv"""
+
+    tests = [
+        {
+            "input": [{'id': '650703', 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z', 'amount': '16210',
+                       'currency_name': 'Sol', 'currency_code': 'PEN', 'from': 'Счет 58803664561298323391',
+                       'to': 'Счет 39745660563456619397', 'description': 'Перевод организации'},
+                      {'id': '3598919', 'state': 'EXECUTED', 'date': '2020-12-06T23:00:58Z', 'amount': '29740',
+                       'currency_name': 'Peso', 'currency_code': 'COP', 'from': 'Discover 3172601889670065',
+                       'to': 'Discover 0720428384694643', 'description': 'Перевод с карты на карту'}],
+
+            "output": [{'id': 650703, 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z',
+                        'operationAmount': {'amount': '16210', 'currency': {'name': 'Sol', 'code': 'PEN'}},
+                        'from': 'Счет 58803664561298323391',
+                        'to': 'Счет 39745660563456619397', 'description': 'Перевод организации'},
+                       {'id': 3598919, 'state': 'EXECUTED', 'date': '2020-12-06T23:00:58Z',
+                        'operationAmount': {'amount': '29740', 'currency': {'name': 'Peso', 'code': 'COP'}},
+                        'from': 'Discover 3172601889670065',
+                        'to': 'Discover 0720428384694643', 'description': 'Перевод с карты на карту'}],
+        },
+        {
+            "input": [],
+
+            "output": [],
+        }
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def transactions_from_xlsx(request: Any) -> Any:
+    """Содержит данные для мока xlsx файла для теста функции src.read_data.read_transactions_from_xlsx"""
+
+    tests = [
+        {
+            "input": {'id': [650703, 3598919], 'state': ['EXECUTED', 'EXECUTED'],
+                      'date': ['2023-09-05T11:30:32Z', '2020-12-06T23:00:58Z'], 'amount': [16210.0, 29740.0],
+                      'currency_name': ['Sol', 'Peso'], 'currency_code': ['PEN', 'COP'],
+                      'from': ['Счет 58803664561298323391', 'Discover 3172601889670065'],
+                      'to': ['Счет 39745660563456619397', 'Discover 0720428384694643'],
+                      'description': ['Перевод организации', 'Перевод с карты на карту']},
+            "output": [{'id': 650703, 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z',
+                        'operationAmount': {'amount': '16210.0', 'currency': {'name': 'Sol', 'code': 'PEN'}},
+                        'from': 'Счет 58803664561298323391',
+                        'to': 'Счет 39745660563456619397', 'description': 'Перевод организации'},
+                       {'id': 3598919, 'state': 'EXECUTED', 'date': '2020-12-06T23:00:58Z',
+                        'operationAmount': {'amount': '29740.0', 'currency': {'name': 'Peso', 'code': 'COP'}},
+                        'from': 'Discover 3172601889670065',
+                        'to': 'Discover 0720428384694643', 'description': 'Перевод с карты на карту'}]
+        },
+        {
+            "input": {'id': [], 'state': [],
+                      'date': [], 'amount': [],
+                      'currency_name': [], 'currency_code': [],
+                      'from': [],
+                      'to': [],
+                      'description': []},
+            "output": []
+        }
+    ]
+
+    return tests[request.param]
