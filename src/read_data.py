@@ -2,7 +2,6 @@ import csv
 import json
 import os.path
 from pathlib import Path
-from typing import Any
 
 import pandas as pd
 

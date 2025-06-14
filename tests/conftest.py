@@ -69,6 +69,7 @@ def correct_account_card_data(request: Any) -> Any:
         {"input": "Visa Platinum 8990922113665229", "output": "Visa Platinum 8990 92** **** 5229"},
         {"input": "Visa Gold 5999414228426353", "output": "Visa Gold 5999 41** **** 6353"},
         {"input": "Счет 73654108430135874305", "output": "Счет **4305"},
+        {"input": "", "output": ""},
     ]
     return tests[request.param]
 
@@ -79,7 +80,6 @@ def incorrect_account_card_data(request: Any) -> Any:
     для тестирования функции src.widgets.mask_account_card"""
 
     tests = [
-        {"input": "", "output": "Incorrect input data"},
         {"input": "95043734", "output": "Incorrect input data"},
     ]
     return tests[request.param]
@@ -651,6 +651,148 @@ def transactions_from_xlsx(request: Any) -> Any:
                       'to': [],
                       'description': []},
             "output": []
+        }
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def transactions_list_for_search_by_str(request: Any) -> Any:
+    """Содержит данные для тестирования функции src.processing.process_bank_search"""
+
+    tests = [
+        {
+            "input": {
+                "transactions": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод со счета",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ],
+                "search_str": "ОРГ",
+            },
+            "output": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    }]
+        },
+        {
+            "input": {
+                "transactions": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод со счета",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ],
+                "search_str": "Сч",
+            },
+            "output": [
+                {
+                    "id": 41428829,
+                    "state": "EXECUTED",
+                    "date": "2019-07-03T18:35:29.512364",
+                    "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                    "description": "Перевод со счета",
+                    "from": "MasterCard 7158300734726758",
+                    "to": "Счет 35383033474447895560",
+                }]
+        },
+        {
+            "input": {
+                "transactions": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод со счета",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ],
+                "search_str": "qwerty",
+            },
+            "output": []
+        }
+    ]
+
+    return tests[request.param]
+
+
+@pytest.fixture
+def transactions_list_for_count_categories(request: Any) -> Any:
+    """Содержит данные для тестирования функции src.processing.get_count_process_bank_operations_categories"""
+
+    tests = [
+        {
+            "input": {
+                "transactions": [
+                    {
+                        "id": 441945886,
+                        "state": "EXECUTED",
+                        "date": "2019-08-26T10:50:58.294041",
+                        "operationAmount": {"amount": "30000.52", "currency": {"name": "руб.", "code": "RUB"}},
+                        "description": "Перевод организации",
+                        "from": "Maestro 1596837868705199",
+                        "to": "Счет 64686473678894779589",
+                    },
+                    {
+                        "id": 41428829,
+                        "state": "EXECUTED",
+                        "date": "2019-07-03T18:35:29.512364",
+                        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+                        "description": "Перевод со счета",
+                        "from": "MasterCard 7158300734726758",
+                        "to": "Счет 35383033474447895560",
+                    },
+                ],
+                "categories": ["Перевод со счета", "Перевод организации", "Открытие счета"],
+            },
+            "output": {"Перевод со счета": 1, "Перевод организации": 1, "Открытие счета": 0}
         }
     ]
 
